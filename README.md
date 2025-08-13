@@ -29,6 +29,19 @@ Supports parameterized queries, transactions, and one-step data synchronization.
 4. In **Tools > References**, ensure **Microsoft ActiveX Data Objects 6.1 Library** is checked.
 5. Open `DbContext.cls` and replace the placeholder in `CONNECTION_STRING` with your actual connection string if needed.
 
+## Connection String Examples
+
+```vb
+' SQL Server (Windows Authentication)
+"Provider=SQLOLEDB;Data Source=SERVER_NAME;Initial Catalog=DATABASE_NAME;Integrated Security=SSPI;"
+
+' SQL Server (SQL Authentication)
+"Provider=SQLOLEDB;Data Source=SERVER_NAME;Initial Catalog=DATABASE_NAME;User ID=USERNAME;Password=PASSWORD;"
+
+' Azure SQL Database
+"Provider=MSOLEDBSQL;Server=tcp:YOUR_SERVER.database.windows.net,1433;Database=YOUR_DATABASE;User ID=YOUR_USER;Password=YOUR_PASSWORD;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+```
+
 ## Usage
 
 ```vb
@@ -38,7 +51,7 @@ db.Initialize DbProvider.SQLServer  ' or DbProvider.Access
 
 '--- Run a SELECT query ---
 Dim rs As ADODB.Recordset
-Set rs = db.SelectQuery("SELECT * FROM Customers WHERE Country = 'USA';")
+Set rs = db.SelectQuery("SELECT * FROM Customers WHERE Country = 'Japan';")
 If Not rs Is Nothing Then
     Do While Not rs.EOF
         Debug.Print rs!CustomerName

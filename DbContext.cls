@@ -1,4 +1,4 @@
-VERSION 0.1 CLASS
+VERSION 1.0 CLASS
 BEGIN
   MultiUse = -1  'True
 END
@@ -21,6 +21,7 @@ Attribute VB_Exposed = False
 ' Version: 0.1
 ' ------------------------------------------------------------
 ' Database Connection Management Class
+
 Option Explicit
 
 Public Enum DbProvider
@@ -343,7 +344,6 @@ Public Function InsertQuery(ByVal tableName As String, ByVal identityField As St
             sqlQuery = "INSERT INTO " & tableName & " (" & fields & ") " & _
                       "OUTPUT " & outputFields & " " & _
                       "VALUES " & allValues
-'            Debug.Print sqlQuery
             Set pRecordset = pConnection.Execute(sqlQuery)
             
         Case DbProvider.Access ' Insert using recordset (Access does not support multi-row INSERT)
