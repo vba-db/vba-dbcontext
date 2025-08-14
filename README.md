@@ -85,16 +85,35 @@ If Not result Then Debug.Print db.LastError
 - `LastError` (String)  
   Returns the last error message encountered.
 - `Initialize(provider As DbProvider)`  
+  Establishes a connection to the specified database provider.
 - `Terminate()`  
+  Closes and cleans up the database connection and any open recordsets.  
 - `SelectQuery(sql As String) As ADODB.Recordset`  
-- `ExecuteQuery(sql As String, Optional useTransaction As Boolean)`  
+  Executes a SELECT SQL statement and returns the resulting ADODB.Recordset.  
+- `ExecuteQuery(sql As String, Optional useTransaction As Boolean) As Boolean`  
+  Executes an action query (INSERT, UPDATE, DELETE), optionally within a transaction, and returns success status.  
 - `ExecuteQueryWithOutput(sql As String, Optional useTransaction As Boolean) As ADODB.Recordset`  
+  Executes an action query with OUTPUT and returns the resulting ADODB.Recordset, optionally within a transaction.  
 - `AddParameter(name As String, value As Variant, Optional dataType As ADODB.DataTypeEnum)`  
+  Adds a parameter to the current command for parameterized queries.  
 - `ClearParameters()`  
+  Clears all parameters from the current command.  
 - `InsertQuery(tableName As String, identityField As String, sourceRs As ADODB.Recordset) As ADODB.Recordset`  
+  Inserts records from the source recordset into the specified table and returns the inserted rows.  
 - `UpdateQuery(tableName As String, identityField As String, sourceRs As ADODB.Recordset) As ADODB.Recordset`  
+  Updates records in the specified table based on the source recordset and returns the updated rows.  
 - `DeleteQuery(tableName As String, Optional whereClause As String) As Boolean`  
-- `BeginTransaction()` / `CommitTransaction()` / `RollbackTransaction()`
+  Deletes records from the specified table matching an optional WHERE clause and returns success status.  
+- `BeginTransaction()`  
+  Begins a database transaction.  
+- `CommitTransaction()`  
+  Commits the current database transaction.  
+- `RollbackTransaction()`  
+  Rolls back the current database transaction.  
+- `CloneData(targetProvider As DbProvider, tableName As String, identityField As String, sourceSQL As String, Optional pageNum As Long, Optional sortField As String) As Boolean`  
+  Clones data from the specified source SQL query into the target table on the target database, with optional pagination and sorting.  
+- `SyncData(targetProvider As DbProvider, sqlQuery As String, updateTableName As String, keyFieldName As String) As Boolean`  
+  Synchronizes data by updating target table rows based on the source query results, matching using the specified key field.
 
 ## License
 
